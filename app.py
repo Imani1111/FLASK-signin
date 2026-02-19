@@ -14,11 +14,13 @@ app = Flask(__name__)
 
 #2.define your function to signup 
 def signup() :
+
     #3.get user inputs for the form 
     username = request.form["username"]
     email = request.form["email"]
     password = request.form["password"]
     phone = request.form["phone"]
+
     #4.establish connection to the database 
     connection = pymysql.connect(host="localhost" , user="root", password="", database="mbunisokogarden")
 
@@ -40,8 +42,38 @@ def signup() :
     return jsonify({"message" : "signup successful"})
 
 
+#signin/login
+#1.define your route/endpoint
+@app.route("/api/signin" , methods=["POST"])
 
+#2.define your function
+def signin() :
 
+    #3.get user inputs from form
+    email= request.form["email"]
+    password= request.form["password"]
+
+    #4.establish connection with the database
+    connection= pymysql.connect(host="localhost", user="root", password="" , database="mbunisokogarden")
+
+    #5.define your cursor
+    cursor= connection.cursor()
+
+    #6.define sql 
+    sql= "SELECT * FROM users WHERE email= %s AND password= %s"
+
+    #7.define your data
+    data = (email, password)
+
+    #8.execute/run query
+    cursor.execute(sql, data)
+
+    #9.check if user exists
+    if cursor.rowcount == 0:
+        return jsonify({"message" : "login failed"})
+    else:
+        user= cursor.fetchone()
+        return jsonify({"message" : "login successful" , "user": user })
 
 
 
