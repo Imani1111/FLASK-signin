@@ -1,89 +1,94 @@
 # import flask 
-from flask import * 
-
-# initialise the app 
-app = Flask(__name__)
-
+from flask import *
+# initialize the app 
+app = Flask (__name__)
 # define your route/endpoint 
 @app.route("/api/home")
-# define function 
-def  home() :
-    return jsonify({ "message" : "welcome home" })  
+# define a fnction 
+def home() :
+    return jsonify({"message" : "welcome to home"})
 
-#products
+
+
+# products 
 @app.route("/api/products")
 def products() :
-    return jsonify({ "message" : "welcome to our products "})
+    return jsonify({"message" : "welcome to products"})
 
-#services 
+# services 
 @app.route("/api/services")
 def services() :
-    return jsonify({"message" : "welcome to our services"})
+    return jsonify({"message" : "welcome to services"})
 
-#contacts
+
+# contact
 @app.route("/api/contacts")
 def contacts() :
-    return jsonify({"message" : "welcome to our contact"})
+    return jsonify({"message" : "welcome to contacts"})
 
 
-#shopping
+
+# sshopping
 @app.route("/api/shopping")
 def shopping() :
-    return jsonify({"message" : "welcome to our shopping"})
+    return jsonify({"message" : "welcome to shopping"})
 
 
-#groceries
+# groceries 
 @app.route("/api/groceries")
 def groceries() :
-    return jsonify({"message" : "welcome to our groceries"})
+    return jsonify({"message" : "welcome to groceries"})
 
-#addition
+# addition 
 @app.route("/api/addition" , methods = ["POST"])
 def addition() :
     num1 = request.form["num1"]
     num2 = request.form["num2"]
     answer = int(num1) + int(num2)
-    return jsonify({"sum" : answer})
+    return jsonify({"sum": answer})
 
 
-# subtraction 
+
+# subtraction
 @app.route("/api/subtraction" , methods = ["POST"])
 def subtraction() :
     num1 = request.form["num1"]
     num2 = request.form["num2"]
     answer = int(num1) - int(num2)
-    return jsonify({"difference" : answer})
+    return jsonify({"sum": answer})
 
-#multiplication 
+
+
+# multiplication
 @app.route("/api/multiplication" , methods = ["POST"])
 def multiplication() :
     num1 = request.form["num1"]
     num2 = request.form["num2"]
     answer = int(num1) * int(num2)
-    return jsonify({"product" : answer})
+    return jsonify({"product": answer})
 
-#division 
+
+
+# division
 @app.route("/api/division" , methods = ["POST"])
 def division() :
     num1 = request.form["num1"]
     num2 = request.form["num2"]
     answer = int(num1) / int(num2)
-    return jsonify({"answer" : answer})    
+    return jsonify({"divident": answer})
 
 
-#simple interest 
+
+# interest
 @app.route("/api/interest" , methods = ["POST"])
 def interest() :
     num1 = request.form["num1"]
     num2 = request.form["num2"]
     num3 = request.form["num3"]
-    answer = (int(num1)*int(num2)*int(num3))/100
-    return jsonify({"answer" : answer})  
+    answer = int(num1) * int(num2) * int(num3)
+    return jsonify({"interest": answer})
 
 
-# run the application 
+
+# run the app 
 app.run(debug=True)
-
-
-
-
